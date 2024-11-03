@@ -1,0 +1,12 @@
+[mysqld]
+bind-address = *
+binlog_format = ROW
+default_authentication_plugin = mysql_native_password
+enforce_gtid_consistency = ON
+gtid_mode = ON
+log-slave-updates = 0
+performance_schema = ON
+port = 3306
+read_only = OFF
+replicate-ignore-db = mysql
+server-id = 2

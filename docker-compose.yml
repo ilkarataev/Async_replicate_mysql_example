@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db-master:
+    container_name: db-master
+    image: percona/percona-server:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - TZ=Asia/Tbilisi 
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./conf.d/master/:/etc/my.cnf.d/
+  db-slave:
+    container_name: db-slave
+    image: percona/percona-server:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      - TZ=Asia/Tbilisi
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./conf.d/slave/:/etc/my.cnf.d/
+    depends_on:
+      - db-master
